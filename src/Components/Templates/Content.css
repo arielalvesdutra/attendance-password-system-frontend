@@ -1,0 +1,10 @@
+.Content {
+    background-color: #282c34;
+    display: flex;
+    flex:1;
+    justify-content: center;
+
+    min-height: 300px;
+
+    width: 100vw;
+}
