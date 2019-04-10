@@ -10,7 +10,7 @@ export default props =>
         @arielalvesdutra - 
         <span className="ml-2">
             <a href="https://github.com/arielalvesdutra">
-             <FontAwesomeIcon icon={faGithub} size="x" /> 
+             <FontAwesomeIcon icon={faGithub} /> 
             </a>
         </span>
     </footer>

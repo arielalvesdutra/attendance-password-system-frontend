@@ -21,8 +21,6 @@ export default props =>
         <KeyLine />
         <KeyLine />
         <KeyLine />
-        <KeyLine />
-        <KeyLine />
         <KeyLine /> 
 
         </div>

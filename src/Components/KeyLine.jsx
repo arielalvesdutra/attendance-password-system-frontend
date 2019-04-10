@@ -6,4 +6,3 @@ export default props =>
     <div className="Key-Line">
         Essa div representa uma linha        
     </div>
-
