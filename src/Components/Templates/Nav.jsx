@@ -9,7 +9,7 @@ export default props =>
                 <a className="nav-link active" href="#">Realizar atendimento</a>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Suas senhas</a>
+                <a className="nav-link" href="#">Todas as senhas</a>
             </li>
         </ul>
     </nav>

@@ -6,6 +6,8 @@ import Footer from './Components/Templates/Footer'
 import Header from './Components/Templates/Header'
 import Nav from './Components/Templates/Nav'
 
+import KeyLine from './Components/KeyLine'
+
 class App extends Component {
   render() {
     return (
