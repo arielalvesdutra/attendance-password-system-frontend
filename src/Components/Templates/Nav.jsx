@@ -1,15 +1,27 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import './Nav.css'
 
-export default props =>
-    <nav className="Nav">
+export default props => {
+    const pathname = window.location.pathname
+
+    return <nav className="Nav">
         <ul className="nav nav-tabs">
             <li className="nav-item">
-                <a className="nav-link active" href="#link">Realizar atendimento</a>
+                <Link to="/" className={`nav-link 
+                                        ${pathname === '/' ? 'active' : ''}`} 
+                >
+                    Realizar atendimento
+                </Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#link">Todas as senhas</a>
+                <Link to="/list-passwords" className={`nav-link 
+                                        ${pathname === '/list-passwords' ? 'active' : ''}`} 
+                >
+                    Todas as senhas
+                </Link>
             </li>
         </ul>
     </nav>
+}
