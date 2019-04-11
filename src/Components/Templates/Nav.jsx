@@ -6,10 +6,10 @@ export default props =>
     <nav className="Nav">
         <ul className="nav nav-tabs">
             <li className="nav-item">
-                <a className="nav-link active" href="#">Realizar atendimento</a>
+                <a className="nav-link active" href="#link">Realizar atendimento</a>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Todas as senhas</a>
+                <a className="nav-link" href="#link">Todas as senhas</a>
             </li>
         </ul>
     </nav>
