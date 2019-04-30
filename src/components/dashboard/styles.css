@@ -1,0 +1,41 @@
+.current {
+    align-items: center;
+    border: 4px  #bbb;
+    border-bottom: 4px solid  #bbb;
+    border-left: 4px solid  #bbb;
+    border-radius: 6px;
+    border-right: 4px solid  #bbb;
+    border-top: 1px solid  #bbb;
+    display: flex;
+    flex: 1;
+    text-align: left;
+}
+
+.current-password-highlight {
+    font-weight: bold;
+    font-size: 2.8em;
+    margin-left: 15px;
+}
+
+.in-progress {
+    flex: 1;
+    font-weight: bold;
+    min-width: 300px;
+}
+
+.finished {
+    flex: 1;
+    font-weight: bold;
+    min-width: 300px;
+}
+
+.shared {
+    padding: 15px;
+}
+
+.line {   
+    border: 3px solid  #bbb;
+    border-radius: 6px;
+    padding: 5px;
+    margin-top: 5px;
+}
