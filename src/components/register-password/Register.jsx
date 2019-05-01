@@ -21,8 +21,7 @@ export default class Register extends Component {
     }
 
     confirmRegister = () => {
-        console.log('selected', this.state.selectedCategory)
-
+        
         axios.post(`${backendUrl}/attendance-passwords`, {
             categoryId: this.state.selectedCategory
         })
