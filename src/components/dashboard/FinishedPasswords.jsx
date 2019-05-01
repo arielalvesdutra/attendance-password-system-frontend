@@ -7,20 +7,22 @@ import { add10LastFinishedPasswords } from '../../redux/actions/attendancePasswo
 import { backendUrl } from '../../backend'
 
 class FinishedPasswords extends Component {
-
-     constructor(props) {
-          super(props)
+     
+     componentDidMount() {
           this.fetch10LastFinishedPasswords()
+          const interval = 10000
+          setInterval(() => {
+               this.fetch10LastFinishedPasswords()
+               },
+               interval
+          )
      }
 
      fetch10LastFinishedPasswords = () => {
-
-          const props = this.props
-
           axios.get(
                `${backendUrl}/attendance-passwords/search/retrieve-10-last-finished`)
                .then(response => {
-                    props.add10LastFinishedPasswords(response.data)
+                    this.props.add10LastFinishedPasswords(response.data)
                })
      }
 
@@ -28,20 +30,19 @@ class FinishedPasswords extends Component {
 
           const passwords = this.props.finishedPasswords
 
+          const content = passwords && passwords.length
+               ? passwords.map((password, key) => 
+                    (<div key={key} className="form-row line">
+                         {password.name} - {password.ticketWindow.name}
+                    </div>)
+               )
+               : 'Nenhum atendimento finalizado.'
+
           return (
                <div className="in-progress shared">
                     <h4>Senhas finalizadas</h4>
                     <hr />
-                    {
-                      passwords && passwords.length
-                         ? passwords.map((password, key) => (
-                              <div key={key} className="form-row line">
-                                   {password.name} - {password.ticketWindow.name}
-                              </div>
-                          )
-                         )
-                         : 'Nenhum atendimento finalizado.'
-                    }
+                    {content}
                </div>
           )
      }

@@ -13,15 +13,23 @@ class InProgressPasswords extends Component {
           this.fetchInProgressPasswords()
      }
 
+     componentDidMount() {
+          this.fetchInProgressPasswords()
+          const interval = 10000
+
+          setInterval(() => {
+               this.fetchInProgressPasswords()
+          },
+               interval
+          )
+     }
+
      fetchInProgressPasswords = () => {
-
-          const props = this.props
-
           axios.get(
                `${backendUrl}/attendance-passwords/search/retrieve-in-progress`)
                .then(response => {
-                    props.addInProgressPasswords(response.data)
-               })
+                    this.props.addInProgressPasswords(response.data)
+          })
      }
 
      render() {
