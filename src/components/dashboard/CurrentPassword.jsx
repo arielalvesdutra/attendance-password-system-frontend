@@ -8,20 +8,24 @@ import { backendUrl } from '../../backend'
 
 class CurrentPassword extends Component {
 
-     constructor(props) {
-          super(props)
+     componentDidMount() {
           this.fetchCurrentPassword()
+          const interval = 10000
+
+          setInterval(() => {
+               this.fetchCurrentPassword()
+          },
+               interval
+          )
      }
 
      fetchCurrentPassword = () => {
-
-          const props = this.props
-
           axios.get(
                `${backendUrl}/attendance-passwords/search/retrieve-last-in-progress`)
                .then(response => {
-                    props.addCurrentPassword(response.data)
-               })
+                    this.props.addCurrentPassword(response.data)
+               
+          })
      }
 
      render() {
@@ -36,7 +40,7 @@ class CurrentPassword extends Component {
 
                <div className="current shared">
                     <b>Senha atual: </b>
-                    <span className="current-password-highlight">
+                    <span  className="current-password-highlight">
                          {content}
                     </span>
                </div>
