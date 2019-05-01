@@ -1,17 +1,12 @@
 .current {
     align-items: center;
+    background-color: #eee;
     border: 4px  #bbb;
-    /* border-bottom: 4px solid  #bbb; */
-    /* border-left: 4px solid  #bbb;
-    border-radius: 6px;
-    border-right: 4px solid  #bbb;
-    border-top: 1px solid  #bbb; */
+    border-radius: 4px;
+    box-shadow: #bbb 4px 4px 4px;
     display: flex;
     flex: 1;
     text-align: left;
-    background-color: #eee;
-    box-shadow: #bbb 4px 4px 4px;
-    border-radius: 4px;
 }
 
 .current-password-highlight {
@@ -37,9 +32,9 @@
 }
 
 .line {   
+    background-color: #eee;
+    border-radius: 4px;
+    box-shadow: #bbb 4px 4px 4px;
     padding: 10px;
     margin-top: 5px;
-    background-color: #eee;
-    box-shadow: #bbb 4px 4px 4px;
-    border-radius: 4px;
 }

@@ -29,7 +29,7 @@ class InProgressPasswords extends Component {
                `${backendUrl}/attendance-passwords/search/retrieve-in-progress`)
                .then(response => {
                     this.props.addInProgressPasswords(response.data)
-               })
+          })
      }
 
      render() {

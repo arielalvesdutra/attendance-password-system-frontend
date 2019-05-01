@@ -24,7 +24,6 @@ class CurrentPassword extends Component {
                `${backendUrl}/attendance-passwords/search/retrieve-last-in-progress`)
                .then(response => {
                     this.props.addCurrentPassword(response.data)
-               
           })
      }
 
