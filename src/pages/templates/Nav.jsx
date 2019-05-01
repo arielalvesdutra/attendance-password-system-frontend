@@ -23,6 +23,13 @@ export default props => {
                 </Link>
             </li>
             <li className="nav-item">
+                <Link to="/register-password" className={`nav-link 
+                                        ${pathname === '/register-password' ? 'active' : ''}`}
+                >
+                    Cadastrar senha
+                </Link>
+            </li>
+            <li className="nav-item">
                 <Link to="/dashboard" className={`nav-link 
                                         ${pathname === '/dashboard' ? 'active' : ''}`}
                 >

@@ -1,0 +1,38 @@
+.categories-container {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 0px 20px;
+}
+
+.confirm-register-container {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0px 20px;
+}
+
+.category {
+    background-color: #666;
+}
+
+.Register {
+    margin-top: 40px;
+}
+
+.Register button {
+    padding: 30px 30px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    color: white;
+    font-weight: bold;
+    margin-top: 20px;    
+}
+
+.confirm-button {
+    background-color: green;
+}
+
+.cancel-button {
+    background-color: brown;
+}

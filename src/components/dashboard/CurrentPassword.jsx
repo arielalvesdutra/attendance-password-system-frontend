@@ -28,16 +28,16 @@ class CurrentPassword extends Component {
 
           const currentPassword = this.props.currentPassword
 
+          const content = currentPassword.name && currentPassword.ticketWindow
+               ? `${currentPassword.name} -  ${currentPassword.ticketWindow.name}`
+               : 'Nenhuma senha em atendimento.'
+
           return (
 
                <div className="current shared">
                     <b>Senha atual: </b>
                     <span className="current-password-highlight">
-                         {
-                           currentPassword.name && currentPassword.ticketWindow
-                           ? `${currentPassword.name} -  ${currentPassword.ticketWindow.name}`
-                           : 'Nenhuma senha em atendimento.'
-                         }
+                         {content}
                     </span>
                </div>
           )
