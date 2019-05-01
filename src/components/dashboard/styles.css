@@ -9,6 +9,7 @@
     display: flex;
     flex: 1;
     text-align: left;
+    background-color: #ccc;
 }
 
 .current-password-highlight {
@@ -38,4 +39,5 @@
     border-radius: 6px;
     padding: 5px;
     margin-top: 5px;
+    background-color: #ccc;
 }

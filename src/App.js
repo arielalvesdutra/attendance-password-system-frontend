@@ -7,6 +7,7 @@ import AllPasswords from './pages/AllPasswords'
 import Dashboard from './pages/Dashboard'
 import HomePage from './pages/Home'
 import NotFound from './pages/NotFound'
+import RegisterPassword from './pages/RegisterPassword'
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Route path="/list-passwords" component={AllPasswords} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/register-password" component={RegisterPassword} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>
