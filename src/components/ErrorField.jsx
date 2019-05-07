@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ message }) => {
+const ErrorField = ({ message }) => {
   return message
     ? (
       <div className="form-row mt-2 text-danger" >
@@ -11,3 +11,5 @@ export default ({ message }) => {
     )
     : ''
 }
+
+export default ErrorField

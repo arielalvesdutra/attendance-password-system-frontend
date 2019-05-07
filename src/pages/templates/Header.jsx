@@ -9,7 +9,6 @@ import { faTicketAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 export default props =>
     <header className="Header">
         <div>
-
             <FontAwesomeIcon icon={faTicketAlt} />
             <span className="ml-2">
                 Attendance Password System

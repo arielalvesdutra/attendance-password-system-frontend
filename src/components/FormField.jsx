@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ type, name, placeholder, mt }) => (
+const FormField = ({ type, name, placeholder, mt }) => (
   <div className={'form-row ' + mt}>
     <div className="col-12">
       <input type={type} className="form-control" name={name}
@@ -8,3 +8,5 @@ export default ({ type, name, placeholder, mt }) => (
     </div>
   </div>
 )
+
+export default FormField
