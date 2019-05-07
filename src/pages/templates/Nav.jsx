@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import './Nav.css'
+import { isAdmin } from '../../user'
 
 export default props => {
     const pathname = window.location.pathname
@@ -36,6 +37,18 @@ export default props => {
                     Dashboard
                 </Link>
             </li>
+
+            {isAdmin()
+                ? (<li className="nav-item">
+                    <Link to="/registers" className={`nav-link 
+                                    ${pathname === '/registers' ? 'active' : ''}`}>
+                        Cadastros
+                    </Link>
+                </li>
+
+                )
+                : ''
+            }
         </ul>
     </nav>
 }
