@@ -7,6 +7,13 @@ const isLogged = () => {
   return false
 }
 
+const logOut = () => {
+  localStorage.removeItem('__aps_data__')
+
+  window.location.href = '/login'
+}
+
 export {
-  isLogged
+  isLogged,
+  logOut
 }

@@ -42,10 +42,11 @@ export default class Login extends Component {
       .then(response => {
         localStorage.setItem('__aps_data__', JSON.stringify(response.data))
 
-        window.location.href = '/'
+        this.redirectToLoggedHomePage()
       })
       .catch(error => {
         const errorMessage = error.response.data
+        localStorage.removeItem('___aps_data__')
 
         this.setState({
           ...this.state,
@@ -75,6 +76,10 @@ export default class Login extends Component {
     if (Object.keys(errors).length) {
       throw errors
     }
+  }
+
+  redirectToLoggedHomePage = () => {
+    window.location.href = '/'
   }
 
   render() {

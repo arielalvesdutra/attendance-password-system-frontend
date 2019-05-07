@@ -19,6 +19,13 @@ const PrivateRoute = ({ path, component, ...rest }) => (
     : <Redirect to="/login" />
 )
 
+const LoginRoute = ({ path, component, ...rest }) => (
+
+  isLogged()
+    ? <Redirect to="/" />
+    : <Route path="/login" component={LoginPage} />
+)
+
 class App extends Component {
   render() {
     return (
@@ -28,7 +35,7 @@ class App extends Component {
           <PrivateRoute path="/list-passwords" component={AllPasswords} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/register-password" component={RegisterPassword} />
-          <Route path="/login" component={LoginPage} />
+          <LoginRoute path="/login" component={LoginPage} />
           <PrivateRoute path="*" component={NotFound} />
         </Switch>
       </Router>
