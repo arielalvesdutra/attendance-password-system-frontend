@@ -1,0 +1,37 @@
+h5 {
+  text-align: left;
+}
+
+.TicketWindow {
+  width: 100%;
+  /* border: red solid 1px; */
+  padding: 15px 0px;
+}
+
+.ticket-window-listing-header {
+  margin: 10px 0px;
+  border-bottom: 1px solid gray;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.ticket-window-listing-body {
+}
+
+.ticket-window-listing-line {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.ticket-window-listing-line button {
+  background-color: brown;
+  color: white;
+  border: none;
+  padding: 7px;
+}
+
+.ticket-window-listing-line button:hover {
+}
