@@ -4,7 +4,7 @@ import './Content.css'
 
 export default props =>
     <div className="Content">
-        <div className="Content-container col-12 col-md-10 col-sm-8 bg-light">
+        <div className="Content-container col-12 col-md-10 col-sm-10 bg-light">
 
             <h3>
                 { props.title || 'Título do artigo' }

@@ -66,7 +66,7 @@ class TicketWindow extends Component {
         .catch(error => error)
 
     } catch (error) {
-      console.error(error.message)
+    
     }
   }
 
@@ -109,8 +109,6 @@ class TicketWindow extends Component {
   }
 
   render() {
-
-    console.log(this.state)
 
     return (
       <div className="TicketWindow col-12 col-md-8">
