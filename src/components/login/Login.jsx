@@ -45,15 +45,18 @@ export default class Login extends Component {
         this.redirectToLoggedHomePage()
       })
       .catch(error => {
-        const errorMessage = error.response.data
-        localStorage.removeItem('___aps_data__')
+        if (error.code === '404') {
 
-        this.setState({
-          ...this.state,
-          errors: {
-            requestError: errorMessage
-          }
-        })
+          const errorMessage = error.response.data
+          localStorage.removeItem('___aps_data__')
+
+          this.setState({
+            ...this.state,
+            errors: {
+              requestError: errorMessage
+            }
+          })
+        }
       })
   }
 
@@ -90,14 +93,14 @@ export default class Login extends Component {
           <form onSubmit={this.handleSubmit}>
             <FormField type="text" placeholder="Digite o seu e-mail" name="email" />
             <ErrorField message={this.state.errors.email} />
-            
+
             <FormField type="password" placeholder="Digite a sua senha"
               name="password" mt="mt-3" />
             <ErrorField message={this.state.errors.password} />
 
-            <FormButton type="submit" text="Logar" />
+            <FormButton type="submit" text="Logar" mt="mt-3" />
           </form>
-            <ErrorField message={this.state.errors.requestError} />
+          <ErrorField message={this.state.errors.requestError} />
         </div>
       </div>
     )

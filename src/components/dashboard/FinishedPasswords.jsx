@@ -24,6 +24,7 @@ class FinishedPasswords extends Component {
                .then(response => {
                     this.props.add10LastFinishedPasswords(response.data)
                })
+               .catch()
      }
 
      render() {

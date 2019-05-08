@@ -30,6 +30,7 @@ class InProgressPasswords extends Component {
                .then(response => {
                     this.props.addInProgressPasswords(response.data)
           })
+          .catch()
      }
 
      render() {

@@ -1,0 +1,12 @@
+.registers-menu-button {
+  background-color: midnightblue;
+  color: white;
+  border: none;
+  padding: 10px 15px 10px 15px;
+}
+
+.registers-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

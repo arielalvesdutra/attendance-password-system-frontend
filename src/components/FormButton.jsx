@@ -1,9 +1,11 @@
 import React from 'react'
 
-const FormButton = ({ type, text }) => (
-  <div className="form-row mt-3">
+import './FormButton.css'
+
+const FormButton = ({ type, text, mt = '', ml = '' }) => (
+  <div className={`form-row ${mt ? mt : ''} ${ml ? ml : ''}`}>
     <div className="col-12">
-      <button type={type} className="btn btn-primary form-control">{text}</button>
+      <button type={type} className="FormButton ">{text}</button>
     </div>
   </div>
 )
