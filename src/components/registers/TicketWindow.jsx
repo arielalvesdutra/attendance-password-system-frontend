@@ -111,7 +111,7 @@ class TicketWindow extends Component {
   render() {
 
     return (
-      <div className="TicketWindow col-12 col-md-8">
+      <div className="TicketWindow col-12 col-md-10">
 
         <div className="mt-1">
           <h5>Cadastro</h5>
@@ -121,7 +121,7 @@ class TicketWindow extends Component {
               <div className="col-12 col-md-6 mt-3">
                 <FormField name="name" placeholder="Nome do Guichê" />
               </div>
-              <div className="col-md-6 mt-3">
+              <div className="col-12 col-md-6 mt-3">
                 <FormButton text="Cadastrar" />
               </div>
             </div>

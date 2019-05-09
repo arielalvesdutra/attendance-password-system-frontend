@@ -7,7 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: #282c34;
+  /* background-color: #282c34; */
 }
 
 html, body, #root, .App {

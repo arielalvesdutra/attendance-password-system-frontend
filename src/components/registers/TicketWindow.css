@@ -3,9 +3,10 @@ h5 {
 }
 
 .TicketWindow {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0px;  
   width: 100%;
-  /* border: red solid 1px; */
-  padding: 15px 0px;
 }
 
 .ticket-window-listing-header {
@@ -29,7 +30,7 @@ h5 {
 .ticket-window-listing-line button {
   background-color: brown;
   color: white;
-  border: none;
+  border: none;  
   padding: 7px;
 }
 
