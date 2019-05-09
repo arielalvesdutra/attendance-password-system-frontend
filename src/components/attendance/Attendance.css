@@ -1,0 +1,10 @@
+.attendance-passwords-listing {
+  background-color: #eee;
+  box-shadow: 3px 3px 3px;
+  color: #666;
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 15px;
+}

@@ -1,11 +1,12 @@
 import React from 'react'
 
 import AbstractPage from './AbstractPage'
+import AttendanceComponent from '../components/attendance/Attendance'
 
-// import KeyLine from '../KeyLine'
-
-export default props =>
+const HomePage = props => (
     <AbstractPage articleTitle="Realizar atendimento">
-        {/* <KeyLine />
-        <KeyLine /> */}
+        <AttendanceComponent />
     </AbstractPage>
+)
+
+export default HomePage

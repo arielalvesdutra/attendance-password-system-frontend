@@ -35,11 +35,6 @@ class Nav extends Component {
                             Cadastrar senha
                         </Link>
                     </li>
-                    <li className="">
-                        <Link to="/dashboard" className={`${pathname === '/dashboard' ? 'active' : ''}`}>
-                            Dashboard
-                        </Link>
-                    </li>
 
                     {isAdmin()
                         ? (<li className="">
@@ -50,6 +45,11 @@ class Nav extends Component {
                         )
                         : ''
                     }
+                    <li className="">
+                        <Link to="/dashboard" className={`${pathname === '/dashboard' ? 'active' : ''}`}>
+                            Dashboard
+                        </Link>
+                    </li>
                 </ul>
                 <ul className="nav-mobile">
                     <li className="">
@@ -70,11 +70,6 @@ class Nav extends Component {
                                         Cadastrar senha
                                     </Link>
                                 </li>
-                                <li className="">
-                                    <Link to="/dashboard" className={` ${pathname === '/dashboard' ? 'active' : ''}`}>
-                                        Dashboard
-                                    </Link>
-                                </li>
                                 {isAdmin() 
                                     ? (
                                     <li className="">
@@ -83,6 +78,11 @@ class Nav extends Component {
                                         </Link>
                                     </li>)
                                     : ''}
+                                <li className="">
+                                    <Link to="/dashboard" className={` ${pathname === '/dashboard' ? 'active' : ''}`}>
+                                        Dashboard
+                                    </Link>
+                                </li>
                             </span>
                         )
                         : ''
