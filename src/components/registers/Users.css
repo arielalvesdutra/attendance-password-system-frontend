@@ -1,0 +1,21 @@
+.users-listing-line {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.users-listing-line button {
+  background-color: brown;
+  color: white;
+  border: none;  
+  padding: 7px;
+}
+
+.users-listing-header {
+  margin: 10px 0px;
+  border-bottom: 1px solid gray;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
