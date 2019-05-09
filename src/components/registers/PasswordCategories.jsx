@@ -30,6 +30,7 @@ const PasswordCategoriesListLine = ({ id, name, code, callback }) => (
   <div className="password-categories-listing-line">
     <span>{id}</span>
     <span>{name}</span>
+    <span>{code}</span>
     <span>
       <button onClick={() => callback(id)}>
         Remover
