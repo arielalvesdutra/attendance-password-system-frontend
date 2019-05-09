@@ -114,7 +114,7 @@ class TicketWindow extends Component {
       <div className="TicketWindow col-12 col-md-10">
 
         <div className="mt-1">
-          <h5>Cadastro</h5>
+          <h5>Cadastro de Guichê</h5>
           <hr />
           <form onSubmit={this.createTicketWindow}>
             <div className="form-row ">
@@ -129,7 +129,7 @@ class TicketWindow extends Component {
         </div>
 
         <div className="mt-4">
-          <h5>Listagem</h5>
+          <h5>Listagem de Guichês</h5>
           <hr />
           <TicketWindowListHeader />
           <div className="ticket-window-listing-body">

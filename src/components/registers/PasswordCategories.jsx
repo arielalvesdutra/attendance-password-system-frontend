@@ -116,13 +116,11 @@ class PasswordCategories extends Component {
 
   render() {
 
-    console.log(this.state)
-
     return (
       <div className="TicketWindow col-12 col-md-10">
 
         <div className="mt-1">
-          <h5>Cadastro</h5>
+          <h5>Cadastro de Categoria</h5>
           <hr />
           <form onSubmit={this.createPasswordCategory}>
             <div className="form-row ">
@@ -142,11 +140,9 @@ class PasswordCategories extends Component {
           </form>
         </div>
         <div className="mt-4">
-          <h5>Listagem</h5>
+          <h5>Listagem de Categorias</h5>
           <hr />
           <PasswordCategoriesListHeader />
-
-          {/* {PasswordCategoriesListLine} */}
           <div className="password-categories-listing-body">
             {this.state.loading && !this.state.passwordCategories.length
               ? (<ClipLoader />)

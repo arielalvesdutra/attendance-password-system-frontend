@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import './Registers.css'
 import TicketWindow from './TicketWindow';
 import PasswordCategories from './PasswordCategories';
+import Users from './Users';
 
 class Registers extends Component {
 
@@ -28,6 +29,10 @@ class Registers extends Component {
     if (currentComponent === 'PasswordCategories') {
       return <PasswordCategories />
     }
+
+    if (currentComponent === 'Users') {
+      return <Users />
+    }
   }
 
   render() {
@@ -37,14 +42,17 @@ class Registers extends Component {
         <div>
           <h4>Selecione o item para gerenciar:</h4>
           <br/>
-          <button className="registers-menu-button"
+          <button className="registers-menu-button mt-2"
+            onClick={() => this.setComponentToShow("PasswordCategories")}>
+            Categorias de Senhas
+          </button>
+          <button className="registers-menu-button mt-2"
             onClick={() => this.setComponentToShow("TicketWindow")}>
             Guichês
           </button>
-
-          <button className="registers-menu-button"
-            onClick={() => this.setComponentToShow("PasswordCategories")}>
-            Categorias de Senhas
+          <button className="registers-menu-button mt-2"
+            onClick={() => this.setComponentToShow("Users")}>
+            Usuários
           </button>
         </div>
     

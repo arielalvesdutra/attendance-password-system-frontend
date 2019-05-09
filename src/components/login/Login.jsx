@@ -45,7 +45,8 @@ export default class Login extends Component {
         this.redirectToLoggedHomePage()
       })
       .catch(error => {
-        if (error.code === '404') {
+
+        if (error.response.status === 404) {
 
           const errorMessage = error.response.data
           localStorage.removeItem('___aps_data__')
