@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 
 import './Registers.css'
 import TicketWindow from './TicketWindow';
+import PasswordCategories from './PasswordCategories';
 
 class Registers extends Component {
 
   state = {
-    currentComponent: 'TicketWindow'
+    currentComponent: 'PasswordCategories'
   }
 
   setComponentToShow(componentName) {
@@ -23,6 +24,10 @@ class Registers extends Component {
     if (currentComponent === 'TicketWindow') {
       return <TicketWindow />
     }
+
+    if (currentComponent === 'PasswordCategories') {
+      return <PasswordCategories />
+    }
   }
 
   render() {
@@ -36,14 +41,13 @@ class Registers extends Component {
             onClick={() => this.setComponentToShow("TicketWindow")}>
             Guichês
           </button>
-          {/* <select name="" id="" className="form-control">
-            <option value="">Guichê</option>
-            <option value="">Categoria de Atendimento</option>
-            <option value="">Usuário</option>
-            <option value="">Status de Atendimento</option>
-          </select> */}
+
+          <button className="registers-menu-button"
+            onClick={() => this.setComponentToShow("PasswordCategories")}>
+            Categorias de Senhas
+          </button>
         </div>
-        {/* <hr /> */}
+    
         <div className="registers-content">
           {
             this.getComponentToShow()
