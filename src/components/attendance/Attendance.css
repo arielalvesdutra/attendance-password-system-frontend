@@ -8,3 +8,38 @@
   margin-top: 10px;
   padding: 15px;
 }
+
+.Attendance button {
+  background-color: midnightblue;
+  border: none;
+  color: white;
+  padding: 7px 10px;
+}
+
+.Attendance button:disabled {
+  opacity: 0.7;
+}
+
+.Attendance select {
+  background-color: white;
+  padding: 7px 10px;
+}
+
+.selected-ticket-window-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.attendant-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.select-container {
+  flex: 1;
+}
+
+.initiate-attend-container {
+  flex: 1;
+  margin-left: 25px;
+}
