@@ -120,8 +120,6 @@ class Attendance extends Component {
       .then(response => {
         if (response.status === 200 && response.data) {
 
-          console.log(response.data)
-
           this.setState({
             ...this.state,
             inProgressAttendance: response.data.id ? response.data : null
@@ -207,8 +205,6 @@ class Attendance extends Component {
   }
 
   render() {
-
-    console.log(this.state)
 
     return (
       <div className="Attendance">
