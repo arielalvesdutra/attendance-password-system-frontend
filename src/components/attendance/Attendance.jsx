@@ -20,44 +20,72 @@ class Attendance extends Component {
 
   state = {
     attendancePasswords: [],
+    inProgressAttendance: null,
     loading: true,
     loadingSelectedTicketWindow: true,
     selectedTicketWindow: null,
     ticketWindow: []
   }
 
-  componentWillMount = () => {
+  attendPassword = () => {
 
     const userId = getUserId()
-    axios.get(`${backendUrl}/ticket-window-use/retrieve-user-ticket-window/${userId}`)
-      .then(response => {
+    const selectedTicketWindow = JSON.parse(localStorage.getItem('__selectedTicketWindow'))
 
-        const selecetedTicketWindow = response.data
-
-        this.setState({
-          ...this.state,
-          selectedTicketWindow: selecetedTicketWindow,
-          loadingSelectedTicketWindow: false
-        })
-
-        localStorage.setItem('__selectedTicketWindow', JSON.stringify(selecetedTicketWindow))
-      })
-      .catch(error => {
+    axios.patch(`${backendUrl}/attendance-passwords/actions/attend-password`, {
+      userId: userId,
+      ticketWindowId: selectedTicketWindow.id
+    }).then(response => {
+      if (response.status === 200) {
 
         this.setState({
           ...this.state,
-          loadingSelectedTicketWindow: false
+          inProgressAttendance: response.data.id ? response.data : null
         })
-        localStorage.removeItem('__selectedTicketWindow')
-      })
+
+        this.fetchAttendancePasswords()
+      }
+    })
+      .catch(response => response)
+  }
+
+  componentWillMount = () => {
+
+    this.fetchUserTicketWindow()
+    this.fetchInProgressUserAttendance()
   }
 
   componentDidMount = () => {
-    this.fetchAttendancaPasswords()
+    this.fetchAttendancePasswords()
     this.fetchTicketWindow()
   }
 
-  fetchAttendancaPasswords = () => {
+  cancelPassword = () => {
+
+    const passwordId = this.state.inProgressAttendance.id
+
+    axios.patch(`${backendUrl}/attendance-passwords/actions/${passwordId}/cancel-password`)
+      .then(response => {
+        if (response.status === 200) {
+          this.fetchInProgressUserAttendance()
+        }
+      })
+      .catch(response => response)
+  }
+
+  concludePassword = () => {
+    const passwordId = this.state.inProgressAttendance.id
+
+    axios.patch(`${backendUrl}/attendance-passwords/actions/${passwordId}/conclude-password`)
+      .then(response => {
+        if (response.status === 200) {
+          this.fetchInProgressUserAttendance()
+        }
+      })
+      .catch(response => response)
+  }
+
+  fetchAttendancePasswords = () => {
     this.setState({
       ...this.state,
       loading: true
@@ -81,6 +109,50 @@ class Attendance extends Component {
             loading: false
           })
         }
+      })
+  }
+
+  fetchInProgressUserAttendance = () => {
+
+    const userId = getUserId()
+
+    axios.get(`${backendUrl}/attendance-passwords/users/${userId}/retrieve-in-progress`)
+      .then(response => {
+        if (response.status === 200 && response.data) {
+
+          console.log(response.data)
+
+          this.setState({
+            ...this.state,
+            inProgressAttendance: response.data.id ? response.data : null
+          })
+        }
+      })
+      .catch(response => response)
+  }
+
+  fetchUserTicketWindow = () => {
+    const userId = getUserId()
+    axios.get(`${backendUrl}/ticket-window-use/retrieve-user-ticket-window/${userId}`)
+      .then(response => {
+
+        const selecetedTicketWindow = response.data
+
+        this.setState({
+          ...this.state,
+          selectedTicketWindow: selecetedTicketWindow,
+          loadingSelectedTicketWindow: false
+        })
+
+        localStorage.setItem('__selectedTicketWindow', JSON.stringify(selecetedTicketWindow))
+      })
+      .catch(error => {
+
+        this.setState({
+          ...this.state,
+          loadingSelectedTicketWindow: false
+        })
+        localStorage.removeItem('__selectedTicketWindow')
       })
   }
 
@@ -136,6 +208,8 @@ class Attendance extends Component {
 
   render() {
 
+    console.log(this.state)
+
     return (
       <div className="Attendance">
 
@@ -156,7 +230,9 @@ class Attendance extends Component {
                           {this.state.selectedTicketWindow.name}
                         </span>
                         <span>
-                          <button onClick={this.releaseTicketWindow}>Liberar Guichê</button>
+                          <button onClick={this.releaseTicketWindow} disabled={this.state.inProgressAttendance} >
+                            Liberar Guichê
+                          </button>
                         </span>
                       </div>
                     )
@@ -184,9 +260,29 @@ class Attendance extends Component {
               )}
           </div>
           <div className="initiate-attend-container">
-            <h5>Iniciar atendimento</h5>
+            <h5>Atendimento</h5>
             <hr />
-            <button disabled={!this.state.selectedTicketWindow} >Atender</button>
+            {this.state.inProgressAttendance
+              ? (
+                <div>
+                  <div>Senha em atendimento: <strong>{this.state.inProgressAttendance.name}</strong></div>
+                  <div className="mt-3">
+                    <button className="mr-2" onClick={this.concludePassword} >
+                      Concluir
+                    </button>
+                    <button className="mt-1"  onClick={this.cancelPassword} >
+                      Cancelar
+                    </button>
+                  </div>
+
+                </div>
+              )
+              : (
+                <button disabled={!this.state.selectedTicketWindow}
+                  onClick={this.attendPassword} >
+                  Atender
+            </button>
+              )}
           </div>
         </div>
         <div className="mt-4">
