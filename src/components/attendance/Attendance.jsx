@@ -7,7 +7,6 @@ import { getUserId } from '../../user'
 
 import './Attendance.css'
 
-
 const AttendancePasswordsList = ({ name, statusName, ticketWindow }) => (
   <div className="attendance-passwords-listing">
     <span>{name}</span>
