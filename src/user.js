@@ -11,6 +11,13 @@ const isAdmin = () => {
   return false
 }
 
+const getUserId = () => {
+  const userStorage = JSON.parse(localStorage.getItem('__aps_data__'))
+
+  return  userStorage.payload.id
+}
+
 export {
-  isAdmin
+  isAdmin,
+  getUserId
 }

@@ -9,6 +9,7 @@ const isLogged = () => {
 
 const logOut = () => {
   localStorage.removeItem('__aps_data__')
+  localStorage.removeItem('__selectedTicketWindow')
 
   window.location.href = '/login'
 }
