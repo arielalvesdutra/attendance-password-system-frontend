@@ -133,14 +133,16 @@ class Attendance extends Component {
     axios.get(`${backendUrl}/ticket-window-use/retrieve-user-ticket-window/${userId}`)
       .then(response => {
 
-        const selecetedTicketWindow = response.data
-
+        const selecetedTicketWindow = Object.keys(response.data).length
+          ? response.data 
+          : null 
+        
         this.setState({
           ...this.state,
           selectedTicketWindow: selecetedTicketWindow,
           loadingSelectedTicketWindow: false
         })
-
+        
         localStorage.setItem('__selectedTicketWindow', JSON.stringify(selecetedTicketWindow))
       })
       .catch(error => {
@@ -162,6 +164,7 @@ class Attendance extends Component {
 
     axios.get(`${backendUrl}/ticket-window-use/retrieve-unused-ticket-window`)
       .then(response => {
+
         this.setState({
           ...this.state,
           ticketWindow: response.data,
@@ -218,8 +221,7 @@ class Attendance extends Component {
               ? (<ClipLoader />)
               : (
                 <div>
-                  {this.state.selectedTicketWindow
-                    ? (
+                  { this.state.selectedTicketWindow && (
                       <div className="selected-ticket-window-container">
                         <span>
                           {this.state.selectedTicketWindow.name}
@@ -230,8 +232,10 @@ class Attendance extends Component {
                           </button>
                         </span>
                       </div>
-                    )
-                    : (
+                  )}
+                  { !this.state.selectedTicketWindow &&
+                    this.state.ticketWindow.length > 0 &&
+                  (
                       <div>
                         <div className="mt-4">
                           <span className="mr-4">
@@ -250,7 +254,15 @@ class Attendance extends Component {
                           </select>
                         </div>
                       </div>
-                    )}
+                  )}
+                  { !this.state.selectedTicketWindow &&
+                    this.state.ticketWindow.length <= 0 && (
+                      <div>
+                        <strong>
+                          Não há Guichês disponíveis no momento.
+                        </strong>
+                      </div>
+                  )}
                 </div>
               )}
           </div>
