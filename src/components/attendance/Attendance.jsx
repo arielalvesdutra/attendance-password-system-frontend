@@ -295,16 +295,27 @@ class Attendance extends Component {
         <div className="mt-4">
           <h5>Atendimentos</h5>
           <hr />
-          {this.state.attendancePasswords.length && !this.state.loading
-            ? this.state.attendancePasswords.map((attendancePassword, key) => (
+          {this.state.attendancePasswords.length > 0 && !this.state.loading && (
+             this.state.attendancePasswords.map((attendancePassword, key) => (
               <AttendancePasswordsList
                 name={attendancePassword.name}
                 statusName={attendancePassword.status.name}
                 ticketWindow={attendancePassword.ticketWindow}
                 key={key} />
-            ))
-            : (<ClipLoader />)
+            )))
           }
+          {!this.state.attendancePasswords.length && this.state.loading && (
+              
+            (<ClipLoader />))
+          }
+          {!this.state.attendancePasswords.length && !this.state.loading && (
+            <div>
+              <strong>
+                Não há senhas aguardando atendimento.
+              </strong>
+            </div>
+          )}
+          
         </div>
       </div>
     )
