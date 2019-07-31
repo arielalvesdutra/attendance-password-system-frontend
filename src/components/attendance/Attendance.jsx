@@ -289,7 +289,7 @@ class Attendance extends Component {
                 </div>
               )
               : (
-                <button disabled={!this.state.selectedTicketWindow}
+                <button disabled={!this.state.selectedTicketWindow || !this.state.attendancePasswords.length}
                   onClick={this.attendPassword} >
                   Atender
             </button>
