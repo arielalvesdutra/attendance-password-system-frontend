@@ -3,7 +3,7 @@ import { ClipLoader } from 'react-spinners'
 import axios from 'axios'
 
 import { backendUrl } from '../../backend'
-import { getUserId } from '../../user'
+import { getUserId, getUserToken } from '../../user'
 
 import './Attendance.css'
 
@@ -90,7 +90,11 @@ class Attendance extends Component {
       loading: true
     })
 
-    axios.get(`${backendUrl}/attendance-passwords/search/retrieve-awaiting`)
+    axios.get(`${backendUrl}/attendance-passwords/search/retrieve-awaiting`, {
+      headers: {
+        Authorization: `Bearer ${getUserToken()}`
+      }
+    })
       .then(response => {
 
         this.setState({
