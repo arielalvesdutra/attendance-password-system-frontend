@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { ClipLoader } from 'react-spinners'
-import FormField from '../FormField'
-import FormButton from '../FormButton'
+import FormField from './FormField'
+import FormButton from './FormButton'
 
-import './Users.css'
+import './UsersList.css'
 
 import axios from 'axios'
-import { backendUrl } from '../../backend';
+import { backendUrl } from '../backend';
 
 const UsersListHeader = () => (
   <div className="users-listing-header">
@@ -35,7 +35,10 @@ const UsersListLine = ({ id, name, email, admin, callback }) => (
     <span>{email}</span>
     <span>{admin ? 'Sim' : 'Não' }</span>
     <span>
-      <button onClick={() => callback(id)}>
+      <button className="btn-primary">
+        Editar
+      </button>
+      <button className="btn-danger" onClick={() => callback(id)}>
         Remover
       </button>
     </span>
@@ -127,7 +130,7 @@ class Users extends Component {
   render() {
 
     return (
-      <div className="TicketWindow col-12 col-md-10">
+      <div className="TicketWindow col-12">
 
         <div className="mt-1">
           <h5>Cadastro de Usuário</h5>

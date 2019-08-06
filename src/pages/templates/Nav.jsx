@@ -35,7 +35,15 @@ class Nav extends Component {
                             Cadastrar senha
                         </Link>
                     </li>
-
+                    {isAdmin()
+                        ? (<li className="">
+                            <Link to="/users" className={`${pathname === '/users' ? 'active' : ''}`}>
+                                Usuários
+                            </Link>
+                        </li>
+                        )
+                        : ''
+                    }
                     {isAdmin()
                         ? (<li className="">
                             <Link to="/registers" className={`${pathname === '/registers' ? 'active' : ''}`}>
@@ -70,6 +78,15 @@ class Nav extends Component {
                                         Cadastrar senha
                                     </Link>
                                 </li>
+                                {isAdmin()
+                                    ? (<li className="">
+                                        <Link to="/users" className={`${pathname === '/users' ? 'active' : ''}`}>
+                                            Usuários
+                                        </Link>
+                                    </li>
+                                    )
+                                    : ''
+                                }
                                 {isAdmin() 
                                     ? (
                                     <li className="">

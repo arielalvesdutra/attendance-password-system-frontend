@@ -13,6 +13,7 @@ import LoginPage from './pages/Login'
 import NotFound from './pages/NotFound'
 import RegisterPage from './pages/RegisterPage'
 import RegisterPassword from './pages/RegisterPassword'
+import UserPage from './pages/users/UserPage'
 
 const PrivateRoute = ({ path, component, ...rest }) => (
 
@@ -46,6 +47,7 @@ class App extends Component {
           <PrivateRoute path="/register-password" component={RegisterPassword} />
           <LoginRoute path="/login" component={LoginPage} />
           <AdminRoute path="/registers" component={RegisterPage} />
+          <AdminRoute path="/users" component={UserPage} />
           <PrivateRoute path="*" component={NotFound} />
         </Switch>
       </Router>
