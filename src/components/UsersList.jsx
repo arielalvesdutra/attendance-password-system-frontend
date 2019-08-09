@@ -130,7 +130,7 @@ class Users extends Component {
   render() {
 
     return (
-      <div className="TicketWindow col-12">
+      <div className="col-12">
 
         <div className="mt-1">
           <h5>Cadastro de Usuário</h5>
