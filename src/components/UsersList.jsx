@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { ClipLoader } from 'react-spinners'
 import FormField from './FormField'
 import FormButton from './FormButton'
@@ -7,6 +8,8 @@ import './UsersList.css'
 
 import axios from 'axios'
 import { backendUrl } from '../backend';
+
+import { fetchUsers } from '../redux/actions/users'
 
 const UsersListHeader = () => (
   <div className="users-listing-header">
@@ -48,12 +51,12 @@ const UsersListLine = ({ id, name, email, admin, callback }) => (
 class Users extends Component {
 
   state = {
-    loading: true,
     users: []
   }
 
   componentDidMount = () => {
-    this.fetchUsers()
+    this.props.onFetchUsers()
+    this.props.onFetchUsers()
   }
 
   createUser = event => {
@@ -66,8 +69,6 @@ class Users extends Component {
     const password = data.get('password')
     const confirmPassword = data.get('confirm-password')
 
-    console.log(name, email, password, confirmPassword)
-
     try {
 
       this.validateForm({ name, email, password, confirmPassword })
@@ -79,12 +80,11 @@ class Users extends Component {
       })
       .then(response => {
 
-        console.log(response)
         if (response.status === 201) {
-          this.fetchUsers()
+          this.props.onFetchUsers()
         }
       })
-      .catch(error => console.log(error))
+      .catch(error => error)
 
     } catch (error) {
     }
@@ -94,41 +94,14 @@ class Users extends Component {
     axios.delete(`${backendUrl}/users/${id}`)
       .then(response => {
         if (response.status === 200) {
-          this.fetchUsers()
+          this.props.onFetchUsers()
         }
       })
       .catch(error => error)
   }
 
-  fetchUsers = () => {
-    this.setState({
-      ...this.state,
-      loading: true
-    })
-
-    axios.get(`${backendUrl}/users`)
-      .then(response => {
-
-        this.setState({
-          ...this.state,
-          users: response.data,
-          loading: false
-        })
-      })
-      .catch(error => {
-
-        if (error.response.status === 404) {
-          this.setState({
-            ...this.state,
-            users: [],
-            loading: false
-          })
-        }
-      })
-  }
-
   render() {
-
+    
     return (
       <div className="col-12">
 
@@ -164,9 +137,9 @@ class Users extends Component {
           <hr />
           <UsersListHeader />
           <div className="users-listing-body">
-            {this.state.loading && !this.state.users.length
+            {this.props.users.isLoadingUsers && !this.props.users.users.length
               ? (<ClipLoader />)
-              : this.state.users.map((record, key) => (
+              : this.props.users.users.map((record, key) => (
                 <UsersListLine 
                   id={record.id} 
                   name={record.name}
@@ -175,7 +148,7 @@ class Users extends Component {
                   callback={this.deleteUser} 
                   key={key} />
               ))}
-            {!this.state.loading && !this.state.users.length
+            {!this.props.users.isLoadingUsers && !this.props.users.users.length
               ? (<div className="mt-4">Nenhum registro encontrado</div>)
               : ''
             }
@@ -208,4 +181,18 @@ class Users extends Component {
   }
 }
 
-export default Users
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchUsers: () => dispatch(fetchUsers())
+  }
+}
+
+const mapStateToProps = ({ users}) => {
+  return {
+    users
+  }
+}
+
+export default connect(
+  mapStateToProps, mapDispatchToProps
+)(Users)

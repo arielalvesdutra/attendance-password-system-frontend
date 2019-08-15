@@ -2,13 +2,13 @@
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     padding: 0px 20px;
 }
 
 .confirm-register-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     padding: 0px 20px;
 }
 
@@ -22,11 +22,18 @@
 
 .Register button {
     padding: 30px 30px;
-    border-radius: 8px;
-    border: 2px solid #ccc;
+    border: none;
     color: white;
     font-weight: bold;
-    margin-top: 20px;    
+    box-shadow: 4px 4px 2px #444;
+    margin-top: 20px;
+    transition: all 1s ease;
+    margin-left: 25px;
+}
+
+.Register button.category:hover {
+    background-color: #888;
+    transition: all 0.5s ease;
 }
 
 .confirm-button {

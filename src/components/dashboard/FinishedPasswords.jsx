@@ -1,30 +1,21 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 
 import './styles.css'
-import { add10LastFinishedPasswords } from '../../redux/actions/attendancePasswords'
-import { backendUrl } from '../../backend'
+import { fetch10LastFinishedPasswords } from '../../redux/actions/attendancePasswords'
 
 class FinishedPasswords extends Component {
      
      componentDidMount() {
-          this.fetch10LastFinishedPasswords()
+          this.props.onFetch10LastFinishedPasswords()
+
           const interval = 10000
+
           setInterval(() => {
-               this.fetch10LastFinishedPasswords()
+               this.props.onFetch10LastFinishedPasswords()
                },
                interval
           )
-     }
-
-     fetch10LastFinishedPasswords = () => {
-          axios.get(
-               `${backendUrl}/attendance-passwords/search/retrieve-10-last-finished`)
-               .then(response => {
-                    this.props.add10LastFinishedPasswords(response.data)
-               })
-               .catch()
      }
 
      render() {
@@ -49,7 +40,9 @@ class FinishedPasswords extends Component {
      }
 }
 
-const mapStateToProps = ({ finishedPasswords }) => {
+const mapStateToProps = ({ passwords }) => {
+
+     const finishedPasswords = passwords.finishedPasswords
 
      return {
           finishedPasswords
@@ -57,8 +50,10 @@ const mapStateToProps = ({ finishedPasswords }) => {
 }
 
 const mapDispatchToProps = dispatch => {
+
      return {
-          add10LastFinishedPasswords: passwords => dispatch(add10LastFinishedPasswords(passwords))
+          onFetch10LastFinishedPasswords: () => 
+               dispatch(fetch10LastFinishedPasswords())
      }
 }
 

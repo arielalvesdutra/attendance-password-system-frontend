@@ -1,10 +1,16 @@
-import { SET_USERS } from './actionsTypes'
+import { 
+  LOADING_USERS,
+  SET_USERS
+} from './actionsTypes'
 
 
 import axios from '../../axios'
 
 export const fetchUsers = () => {
   return dispath => {
+
+    dispath(loadingUsers())
+
     axios.get('/users')
     .then(response => {
       const data = response.data
@@ -12,6 +18,12 @@ export const fetchUsers = () => {
       dispath(setUsers(data))
     })
     .catch(error => error)
+  }
+}
+
+export const loadingUsers = () => {
+  return {
+    type: LOADING_USERS
   }
 }
 

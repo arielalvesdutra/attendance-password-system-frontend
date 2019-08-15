@@ -1,36 +1,21 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 
 import './styles.css'
-import { addInProgressPasswords } from '../../redux/actions/attendancePasswords'
-import { backendUrl } from '../../backend'
+import { fetchInProgressPasswords } from '../../redux/actions/attendancePasswords'
 
 class InProgressPasswords extends Component {
 
-     constructor(props) {
-          super(props)
-          this.fetchInProgressPasswords()
-     }
-
      componentDidMount() {
-          this.fetchInProgressPasswords()
+          this.props.onFetchInProgressPasswords()
+
           const interval = 10000
 
           setInterval(() => {
-               this.fetchInProgressPasswords()
+               this.props.onFetchInProgressPasswords()
           },
                interval
           )
-     }
-
-     fetchInProgressPasswords = () => {
-          axios.get(
-               `${backendUrl}/attendance-passwords/search/retrieve-in-progress`)
-               .then(response => {
-                    this.props.addInProgressPasswords(response.data)
-          })
-          .catch()
      }
 
      render() {
@@ -56,7 +41,9 @@ class InProgressPasswords extends Component {
      }
 }
 
-const mapStateToProps = ({ inProgressPasswords }) => {
+const mapStateToProps = ({ passwords }) => {
+
+     const inProgressPasswords = passwords.inProgressPasswords
 
      return {
           inProgressPasswords
@@ -64,8 +51,9 @@ const mapStateToProps = ({ inProgressPasswords }) => {
 }
 
 const mapDispatchToProps = dispatch => {
+
      return {
-          addInProgressPasswords: passwords => dispatch(addInProgressPasswords(passwords))
+          onFetchInProgressPasswords: () => dispatch(fetchInProgressPasswords())
      }
 }
 
