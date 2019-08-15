@@ -6,10 +6,7 @@ import FormButton from './FormButton'
 
 import './UsersList.css'
 
-import axios from 'axios'
-import { backendUrl } from '../backend';
-
-import { fetchUsers } from '../redux/actions/users'
+import { createUser, deleteUser, fetchUsers } from '../redux/actions/users'
 
 const UsersListHeader = () => (
   <div className="users-listing-header">
@@ -50,12 +47,7 @@ const UsersListLine = ({ id, name, email, admin, callback }) => (
 
 class Users extends Component {
 
-  state = {
-    users: []
-  }
-
   componentDidMount = () => {
-    this.props.onFetchUsers()
     this.props.onFetchUsers()
   }
 
@@ -73,31 +65,9 @@ class Users extends Component {
 
       this.validateForm({ name, email, password, confirmPassword })
 
-      axios.post(`${backendUrl}/users`, {
-        name: name,
-        email: email,
-        password: password,
-      })
-      .then(response => {
+      this.props.onCreateUser({ name, email, password })
 
-        if (response.status === 201) {
-          this.props.onFetchUsers()
-        }
-      })
-      .catch(error => error)
-
-    } catch (error) {
-    }
-  }
-
-  deleteUser = (id) => {
-    axios.delete(`${backendUrl}/users/${id}`)
-      .then(response => {
-        if (response.status === 200) {
-          this.props.onFetchUsers()
-        }
-      })
-      .catch(error => error)
+    } catch (error) { }
   }
 
   render() {
@@ -145,7 +115,7 @@ class Users extends Component {
                   name={record.name}
                   email={record.email} 
                   admin={record.admin} 
-                  callback={this.deleteUser} 
+                  callback={this.props.onDeleteUser} 
                   key={key} />
               ))}
             {!this.props.users.isLoadingUsers && !this.props.users.users.length
@@ -183,7 +153,9 @@ class Users extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchUsers: () => dispatch(fetchUsers())
+    onFetchUsers: () => dispatch(fetchUsers()),
+    onDeleteUser: id => dispatch(deleteUser(id)),
+    onCreateUser: user => dispatch(createUser(user))
   }
 }
 

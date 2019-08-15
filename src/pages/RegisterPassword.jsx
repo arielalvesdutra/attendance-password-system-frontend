@@ -6,7 +6,7 @@ import Register from '../components/register-password/Register'
 
 export default props => {
     return (
-        <AbstractPage articleTitle="Registrar senha">
+        <AbstractPage articleTitle="Cadastrar senha">
             <div className="RegisterPassword">
                 <Register />
             </div>
