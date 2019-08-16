@@ -11,6 +11,6 @@ export default props =>
     <div className="NotFound-span">
 
         <FontAwesomeIcon icon={faExclamationTriangle} size="4x" color="#ffc107"/>
-        <h1 className="NotFound-h1">Ops, página não entrada...</h1>
+        <h1 className="NotFound-h1">Ops, página não encontrada...</h1>
     </div>
     </AbstractPage>

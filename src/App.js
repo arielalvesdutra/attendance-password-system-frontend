@@ -14,6 +14,7 @@ import NotFound from './pages/NotFound'
 import RegisterPage from './pages/RegisterPage'
 import RegisterPassword from './pages/RegisterPassword'
 import UserPage from './pages/users/UserPage'
+import UserEditPage from './pages/users/UserEditPage'
 
 const PrivateRoute = ({ path, component, ...rest }) => (
 
@@ -47,7 +48,8 @@ class App extends Component {
           <PrivateRoute path="/register-password" component={RegisterPassword} />
           <LoginRoute path="/login" component={LoginPage} />
           <AdminRoute path="/registers" component={RegisterPage} />
-          <AdminRoute path="/users" component={UserPage} />
+          <AdminRoute exact path="/users" component={UserPage} />
+          <AdminRoute path="/users/:id/edit" component={UserEditPage} />
           <PrivateRoute path="*" component={NotFound} />
         </Switch>
       </Router>

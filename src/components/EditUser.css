@@ -1,0 +1,11 @@
+.EditUser {
+  text-align: left;
+}
+
+.EditUser h5 > a {
+  margin-right: 10px;
+  cursor: pointer;
+}
+.EditUser h5 > a > svg  {
+  color: #007bff;
+}

@@ -39,6 +39,17 @@ export const deleteUser = id => {
   }
 }
 
+export const fetchUserById = userId => {
+  return async dispatch => {
+    return axios.get(`/users/${userId}`)
+    .then(response => {
+
+      return response.data
+    })
+    .catch(error => error)
+  }
+}
+
 export const fetchUsers = () => {
   return dispatch => {
 
@@ -51,6 +62,16 @@ export const fetchUsers = () => {
       dispatch(setUsers(data))
     })
     .catch(error => error)
+  }
+}
+
+export const updateUser = user => {
+  return dispatch => {
+    axios.patch(`/users/${user.id}`, user)
+    .then(response => {
+      return response.data
+    })
+    .catch(error => console.log(error))
   }
 }
 
