@@ -8,10 +8,12 @@ import thunk from 'redux-thunk'
 
 import passwordsReducer from './reducers/attendancePasswords'
 import usersReducer from './reducers/users'
+import passwordCategoriesReducer from './reducers/passwordCategories'
 
 const reducers = combineReducers({
   users: usersReducer,
-  passwords: passwordsReducer
+  passwords: passwordsReducer,
+  passwordCategories: passwordCategoriesReducer
 })
 
 const storeConfig = () => {

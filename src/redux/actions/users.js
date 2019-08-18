@@ -71,8 +71,22 @@ export const updateUser = user => {
     .then(response => {
       return response.data
     })
-    .catch(error => console.log(error))
+    .catch(error => error)
   }
+}
+
+export const updateUserAllowedPasswordCategories = user => {
+  return dispatch => {
+
+    const allowedPasswordCategories = {
+      allowedPasswordCategories: Object.values(user.allowedPasswordCategories)
+    }
+
+    axios.put(`/users/${user.id}/allowed-password-categories`, allowedPasswordCategories)
+    .then(response => response)
+    .catch(error => error)
+  }
+
 }
 
 export const loadingUsers = () => {

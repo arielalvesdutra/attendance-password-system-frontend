@@ -1,11 +1,16 @@
 import React, { Component, Fragment } from 'react'
+import { ClipLoader } from 'react-spinners'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
-import { updateUser } from '../redux/actions/users'
-
 import './EditUser.css'
+
+import { 
+  updateUser,
+  updateUserAllowedPasswordCategories
+} from '../redux/actions/users'
+import { fetchPasswordCategories } from '../redux/actions/passwordCategories'
 
 class EditUser extends Component {
 
@@ -20,6 +25,7 @@ class EditUser extends Component {
     super(props)
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handleAdminChange = this.handleAdminChange.bind(this)
+    this.handlePasswordCategoryChange = this.handlePasswordCategoryChange.bind(this)
   }
 
   componentWillMount = async () => {
@@ -31,6 +37,8 @@ class EditUser extends Component {
       ...this.state,
       user: this.props.user
     })
+
+    this.props.onFetchPasswordCategories()
   }
 
   back = () => {
@@ -55,14 +63,64 @@ class EditUser extends Component {
     })
   }
 
+  handlePasswordCategoryChange = passwordCategory => {
+    
+    const userCategories = this.state.user.allowedPasswordCategories
+
+    if (passwordCategory.isChecked) {
+      delete userCategories[passwordCategory.code]
+    }
+
+    if (!passwordCategory.isChecked) {
+      userCategories[passwordCategory.code] = passwordCategory
+    }
+
+    this.setState({
+      user: {
+        ...this.state.user,
+        allowedPasswordCategories: userCategories
+      }
+    })
+  }
+
   handleUpdateUserSubmit = (event) => {
     event.preventDefault()
 
     this.props.onUpdateUser(this.state.user)
   }
 
+  handleUpdateAllowedPassowordCategories = event => {
+    event.preventDefault()
+
+    this.props.onUpdateUserAllowedPasswordCategories(this.state.user)
+  }
+
+  userHasCategory = parameterCategoryCode => {
+
+    const userCategories = Object.keys(this.state.user.allowedPasswordCategories)
+
+    return userCategories.reduce((hasCategory, userCategoryCode) => {
+      return hasCategory = userCategoryCode === parameterCategoryCode
+         ? true
+         : hasCategory
+    }, false)
+  }
+
   render() {
-    
+  
+    const categoriesList = this.props.passwordCategories.isLoadingPasswordCategories === false
+      ? this.props.passwordCategories.passwordCategories.map(record => {
+          if (this.userHasCategory(record.code)) {
+            record.isChecked = true
+            return record
+          }
+
+          delete record.isChecked
+          return  record
+        })
+      : []
+
+
     return (
       <div className="EditUser col-12">
         
@@ -107,6 +165,29 @@ class EditUser extends Component {
                 Salvar
               </button>
             </form>
+            <h5 className="mt-4">Categorias de senha que o usuário atende</h5>
+            <hr/>
+            <form onSubmit={this.handleUpdateAllowedPassowordCategories}>
+              {categoriesList.length > 0 && (
+                categoriesList.map((passwordCategory, key) => 
+
+                  <div className="form-check" key={key}>
+                    <input className="form-check-input" 
+                            onChange={() => this.handlePasswordCategoryChange(passwordCategory)}
+                            defaultChecked={passwordCategory.isChecked ? 'checked' : ''}
+                            type="checkbox"/>
+                    <label className="form-check-label">
+                    { passwordCategory.name }
+                    </label>
+                  </div>          
+              ))}
+              {this.props.passwordCategories.isLoadingPasswordCategories === true &&
+                <ClipLoader />
+              }
+              <button type="submit" className="btn btn-primary mt-4 form-control">
+                Salvar
+              </button>
+            </form>
           </Fragment>
         )}
       </div>
@@ -116,12 +197,17 @@ class EditUser extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateUser: user => dispatch(updateUser(user))
+    onUpdateUser: user => dispatch(updateUser(user)),
+    onUpdateUserAllowedPasswordCategories: user => 
+        dispatch(updateUserAllowedPasswordCategories(user)),
+    onFetchPasswordCategories: () => dispatch(fetchPasswordCategories())
    }
 }
 
-const mapStateToProps = () => {
-  return { }
+const mapStateToProps = ({ passwordCategories }) => {
+  return { 
+    passwordCategories 
+  }
 }
 
 export default connect(
