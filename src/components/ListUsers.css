@@ -5,10 +5,10 @@
 }
 
 .users-listing-line button {
-  background-color: brown;
   color: white;
   border: none;  
   padding: 7px;
+  margin-left: 5px;
 }
 
 .users-listing-header {

@@ -1,30 +1,22 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 
 import './styles.css'
-import { addCurrentPassword } from '../../redux/actions/attendancePasswords'
-import { backendUrl } from '../../backend'
+import { fetchCurrentPassword } from '../../redux/actions/attendancePasswords'
 
 class CurrentPassword extends Component {
 
      componentDidMount() {
-          this.fetchCurrentPassword()
+
+          this.props.onFetchCurrentPassword()
+
           const interval = 10000
 
           setInterval(() => {
-               this.fetchCurrentPassword()
+               this.props.onFetchCurrentPassword()
           },
                interval
           )
-     }
-
-     fetchCurrentPassword = () => {
-          axios.get(
-               `${backendUrl}/attendance-passwords/search/retrieve-last-in-progress`)
-               .then(response => {
-                    this.props.addCurrentPassword(response.data)
-          }).catch()
      }
 
      render() {
@@ -47,16 +39,17 @@ class CurrentPassword extends Component {
      }
 }
 
-const mapStateToProps = ({ currentPassword }) => {
+const mapStateToProps = ({ passwords }) => {
 
-     return {
-          currentPassword
-     }
+     const currentPassword = passwords.currentPassword
+
+     return { currentPassword }
 }
 
 const mapDispatchToProps = dispatch => {
+
      return {
-          addCurrentPassword: passwords => dispatch(addCurrentPassword(passwords))
+          onFetchCurrentPassword: () => dispatch(fetchCurrentPassword())
      }
 }
 

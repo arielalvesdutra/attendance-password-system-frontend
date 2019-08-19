@@ -1,9 +1,9 @@
 import React from 'react'
 
-import AbstractPage from './AbstractPage'
-import InProgressPasswords from '../components/dashboard/InProgressPasswords'
-import FinishedPasswords from '../components/dashboard/FinishedPasswords'
-import CurrentPassword from '../components/dashboard/CurrentPassword'
+import AbstractPage from '../templates/SystemLayout'
+import InProgressPasswords from '../../components/dashboard/InProgressPasswords'
+import FinishedPasswords from '../../components/dashboard/FinishedPasswords'
+import CurrentPassword from '../../components/dashboard/CurrentPassword'
 
 import './Dashboard.css'
 

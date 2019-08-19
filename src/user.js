@@ -17,6 +17,12 @@ const getUserId = () => {
   return  userStorage.payload.id
 }
 
+const getUserName = () => {
+  const userStorage = JSON.parse(localStorage.getItem('__aps_data__'))
+
+  return userStorage.payload.name
+}
+
 const getUserToken = () => {
   const userStorage = JSON.parse(localStorage.getItem('__aps_data__'))
 
@@ -26,5 +32,6 @@ const getUserToken = () => {
 export {
   isAdmin,
   getUserId,
+  getUserName,
   getUserToken
 }

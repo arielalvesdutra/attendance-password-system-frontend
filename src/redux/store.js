@@ -1,5 +1,23 @@
-import { createStore } from 'redux'
+import {
+  createStore,
+  combineReducers,
+  compose,
+  applyMiddleware
+} from 'redux'
+import thunk from 'redux-thunk'
 
-import passwords from './reducers/attendancePasswords'
+import passwordsReducer from './reducers/attendancePasswords'
+import usersReducer from './reducers/users'
+import passwordCategoriesReducer from './reducers/passwordCategories'
 
-export default createStore(passwords)
+const reducers = combineReducers({
+  users: usersReducer,
+  passwords: passwordsReducer,
+  passwordCategories: passwordCategoriesReducer
+})
+
+const storeConfig = () => {
+  return createStore(reducers, compose(applyMiddleware(thunk)))
+}
+
+export default storeConfig
