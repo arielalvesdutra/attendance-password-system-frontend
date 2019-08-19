@@ -2,7 +2,7 @@ import React, { Component} from 'react'
 import { connect } from 'react-redux'
 import { ClipLoader } from 'react-spinners'
 
-import AbstractPage from '../AbstractPage'
+import AdminLayout from '../templates/SystemLayout'
 import EditUser from '../../components/EditUser'
 
 import { fetchUserById } from '../../redux/actions/users'
@@ -32,12 +32,12 @@ class UserPage extends Component {
   render() {
     
     return (
-      <AbstractPage articleTitle="Editar usuário">
+      <AdminLayout articleTitle="Editar usuário">
         {this.state.user.id
           ? <EditUser user={this.state.user}/>
           : <ClipLoader />
         }
-      </AbstractPage>
+      </AdminLayout>
     )
   }
 }

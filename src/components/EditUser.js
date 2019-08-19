@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { ClipLoader } from 'react-spinners'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
@@ -39,10 +40,6 @@ class EditUser extends Component {
     })
 
     this.props.onFetchPasswordCategories()
-  }
-
-  back = () => {
-    window.history.go(-1)
   }
 
   handleNameChange = event => {
@@ -120,7 +117,6 @@ class EditUser extends Component {
         })
       : []
 
-
     return (
       <div className="EditUser col-12">
         
@@ -128,9 +124,9 @@ class EditUser extends Component {
           <Fragment>
 
             <h5>
-              <a onClick={this.back} title="Voltar">
-               <FontAwesomeIcon icon={faArrowLeft} /> 
-              </a>
+              <Link to="/users" >
+                <FontAwesomeIcon icon={faArrowLeft} /> 
+              </Link>
                Editar usuário
             </h5>
             <hr />

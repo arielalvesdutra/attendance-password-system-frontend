@@ -1,7 +1,7 @@
 import React, { Component} from 'react'
 
-import AbstractPage from '../AbstractPage'
-import UsersList from '../../components/UsersList'
+import AdminLayout from '../templates/SystemLayout'
+import UsersList from '../../components/ListUsers'
 import AddUser from '../../components/AddUser'
 
 
@@ -9,14 +9,14 @@ class UserPage extends Component {
 
   render() {
     return (
-      <AbstractPage articleTitle="Usuários">
+      <AdminLayout articleTitle="Usuários">
         <div>
           <div>
             <AddUser />
             <UsersList history={this.props.history}/>
           </div>
         </div>
-      </AbstractPage>
+      </AdminLayout>
     )
   }
 }

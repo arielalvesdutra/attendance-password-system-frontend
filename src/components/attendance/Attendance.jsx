@@ -4,16 +4,9 @@ import axios from 'axios'
 
 import { backendUrl } from '../../backend'
 import { getUserId, getUserToken } from '../../user'
+import PasswordCommonLine from '../../components/PasswordCommonLine'
 
 import './Attendance.css'
-
-const AttendancePasswordsList = ({ name, statusName, ticketWindow }) => (
-  <div className="attendance-passwords-listing">
-    <span>{name}</span>
-    <span>{statusName}</span>
-    <span>{ticketWindow ? ticketWindow.name : 'Nenhum Guichê selecionado'}</span>
-  </div>
-)
 
 class Attendance extends Component {
 
@@ -301,11 +294,11 @@ class Attendance extends Component {
           <hr />
           {this.state.attendancePasswords.length > 0 && !this.state.loading && (
              this.state.attendancePasswords.map((attendancePassword, key) => (
-              <AttendancePasswordsList
-                name={attendancePassword.name}
-                statusName={attendancePassword.status.name}
-                ticketWindow={attendancePassword.ticketWindow}
-                key={key} />
+               <PasswordCommonLine 
+                  key={key}
+                  password={attendancePassword}
+                  ticketWindow={attendancePassword.ticketWindow}
+               />
             )))
           }
           {!this.state.attendancePasswords.length && this.state.loading && (

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ClipLoader } from 'react-spinners'
 
-import './UsersList.css'
+import './ListUsers.css'
 
 import { deleteUser, fetchUsers } from '../redux/actions/users'
 

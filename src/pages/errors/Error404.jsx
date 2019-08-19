@@ -2,9 +2,9 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 
-import AbstractPage from './AbstractPage'
+import AbstractPage from '../templates/SystemLayout'
 
-import './NotFound.css'
+import './Error404.css'
 
 export default props =>
     <AbstractPage articleTitle="404 - Página Não Encontrada">

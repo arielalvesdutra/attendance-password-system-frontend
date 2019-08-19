@@ -1,6 +1,6 @@
 import React from 'react'
 
-import AbstractPage from './AbstractPage'
+import AbstractPage from './templates/SystemLayout'
 
 import './RegisterPage.css'
 

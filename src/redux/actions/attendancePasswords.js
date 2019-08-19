@@ -1,10 +1,28 @@
 import {
-     SET_CURRENT_PASSWORD,
-     SET_10_LAST_FINISHED_PASSWORDS,
-     SET_IN_PROGRESS_PASSWORDS
+    LOADING_ALL_PASSWORDS,
+    SET_ALL_PASSWORDS,
+    SET_CURRENT_PASSWORD,
+    SET_10_LAST_FINISHED_PASSWORDS,
+    SET_IN_PROGRESS_PASSWORDS
 } from './actionsTypes'
 
 import axios from '../../axios'
+
+export const fetchAllPasswords = () => {
+    return dispatch => {
+
+        dispatch(loadingAllPasswords())
+
+        axios.get('/attendance-passwords')
+        .then(response => {
+            
+            const data = response.data
+
+            dispatch(setAllPasswords(data))
+
+        }).catch(error => error)
+    }
+}
 
 export const fetchCurrentPassword = () => {
     return dispatch => {
@@ -42,6 +60,19 @@ export const fetchInProgressPasswords = () => {
             dispatch(setInProgressPasswords(data))
 
         }).catch(error => error)
+    }
+}
+
+export const loadingAllPasswords = () => {
+    return {
+        type: LOADING_ALL_PASSWORDS
+    }
+}
+
+export const setAllPasswords = passwords => {
+    return {
+        type: SET_ALL_PASSWORDS,
+        passwords: passwords
     }
 }
 

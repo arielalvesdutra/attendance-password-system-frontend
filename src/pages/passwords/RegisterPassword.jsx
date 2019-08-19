@@ -1,8 +1,7 @@
 import React from 'react'
 
-import AbstractPage from './AbstractPage'
-import './RegisterPassword.css'
-import Register from '../components/register-password/Register'
+import AbstractPage from '../templates/SystemLayout'
+import Register from '../../components/register-password/Register'
 
 export default props => {
     return (
